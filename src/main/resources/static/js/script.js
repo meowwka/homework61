@@ -1,5 +1,59 @@
 
 'use strict';
+window.addEventListener('load', function () {
+
+    // const post = fetch("http://localhost:8000");
+    // console.log(post);
+
+    const savePostButton = document.getElementById("btnSubmit");
+    if(savePostButton != undefined) {
+
+        savePostButton.addEventListener("click", function () {
+            const newPost = document.getElementById("newPost");
+            let data = new FormData(newPost);
+            console.log(data);
+
+            fetch("http://localhost:8000", {
+                method: 'POST',
+                body: data
+            }).then(r => r.json()).then(data => {
+                window.location.href = "http://localhost:8000"
+            });
+        });
+    }
+
+    let justContent = document.getElementById("postContent");
+        if(justContent != undefined) {
+            fetch("http://localhost:8000",)
+                // .then(response => response.text())
+                .then(text => console.log(text))
+                .then(data => console.log(data))
+        }
+
+
+
+
+});
+async  function f() {
+    const formData = new FormData();
+    const fileField = document.querySelector('input[type="file"]');
+
+    formData.append('username', 'abc123');
+    formData.append('avatar', fileField.files[0]);
+
+    try {
+        const response = await fetch('http://localhost:8000', {
+            method: 'PUT',
+            body: formData
+        });
+        const result = await response.json();
+        console.log('Успех:', JSON.stringify(result));
+    } catch (error) {
+        console.error('Ошибка:', error);
+    }
+
+}
+f();
 
 class User {
   constructor(id, name, email, isAuthorised) {
@@ -37,10 +91,10 @@ const user2 = new User(2, "Alex","gena@gena.com", false);
 authorize(user2);
 const comment = new Comment(user2.name, post.id, "Kitty you are so cute! Don't be so angry)) with love<3");
 
-console.log(user);
-console.log(post);
-console.log(user2);
-console.log(comment);
+// console.log(user);
+// console.log(post);
+// console.log(user2);
+// console.log(comment);
 
 let posts = [];
 
@@ -53,14 +107,14 @@ for(let i = 0; 6 > i; i++) {
 };
 
 function toPrint(post) {
-  console.log(post);
+  // console.log(post);
 };
 posts.forEach(toPrint);
 
 function like (post, postId, isLiked) {
   if(post.id === postId) {
     isLiked ? post.likes++ : post.likes--;
-    console.log(post);
+    // console.log(post);
   };
 };
 
@@ -154,7 +208,7 @@ document.getElementById('comments').append(createCommentElement(comment));
 
 const hearts = document.getElementsByClassName('fa-heart');
 for(let i = 0; i < hearts.length; i++) {
-  console.log(hearts[i]);
+  // console.log(hearts[i]);
     hearts[i].addEventListener('click', function() {
         if(hearts[i].classList.contains('fas')) {
             hearts[i].classList.remove('fas');
@@ -198,25 +252,8 @@ for(let i = 0; i < postss.length; i++) {
            }
         })
     }
-
 };
 
-
-// const comm = document.querySelectorAll('.comments')[0];
-// console.log(comm);
-// // for(let i = 0; i<comm.length; i++){
-//   comm.addEventListener('click', comText);
-//   // console.log(comm[i]);
-// // }
-
-// function comText(){
-//   let elem = document.createElement('div');
-//   elem.classList.add('col-lg-10');
-// elem.innerHTML = '<textarea rows="3" cols="3" class="form-control" placeholder="Добавьте комментарий"></textarea>';
-// // comm.append(elem);
-// return elem;
-// }
-// console.log(comText);
 
 document.querySelector('#btn').onclick = function(event){
     event.preventDefault();
@@ -224,29 +261,21 @@ document.querySelector('#btn').onclick = function(event){
     console.log(form.elements.test.value);
 }
 
-window.addEventListener('load', function () {
 
-    const post = fetch("http://localhost:8080");
-    console.log(post);
+// const url = 'https://jsonplaceholder.typicode.com/todos';
+//
+// async  function fetchAsyncTodos() {
+//     console.log('fetch started')
+//     try{
+//         const response = await  fetch(url);
+//         const data = await  response.json();
+//         console.log('Data: ' , data);
+//     } catch (e) {
+//         console.error(e)
+//     }
+// }
+// fetchAsyncTodos();
 
-    const savePostButton = document.getElementById("btnSubmit");
-
-    savePostButton.addEventListener("click", function() {
-        const postForm = document.getElementById("newPost");
-        let data = new FormData(postForm);
-
-        fetch("http://localhost:8080", {
-            method: 'POST',
-            body: data
-        }).then(r => r.json()).then(data => {window.location.href = "http://localhost:8080"});
-    });
-});
-
-const url = 'https://jsonplaceholder.typicode.com/todos';
-
-async  function fetchAsyncTodos() {
-
-}
 
 
 
