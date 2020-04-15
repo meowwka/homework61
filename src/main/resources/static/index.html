@@ -5,8 +5,7 @@
 	<title>Lesson 57. Javascript 101</title>
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body class="no-scroll">
   <div class="container">
@@ -14,9 +13,17 @@
 
 
       <div class="col col-lg-7 posts-container">
-        <div class="col-lg-10">
-          <input type="file" class="form-control h-auto">
-        </div>
+          <form id="newPost" enctype="multipart/form-data" action="/" method="post">
+            <div>
+              <input type="hidden" id="user" name="user" />
+              <label for="description"></label>
+              <input type="text" placeholder="Описание" name="description" id="description">
+              <input type="file" id="imagine" name="image"/>
+              <button type="button" id="btnSubmit"class="btn btn-light"> Загрузить</button>
+            </div>
+          </form>
+        <hr>
+
         <!-- single post start -->
         <div class="card my-3">
           <!-- image block start -->

@@ -94,11 +94,11 @@
         
       </div>
       <button id = "button" type="button" class="btn btn-secondary" style="padding: 15px;"><h4>Войти</h4></button>
-      <form id="form" name="form" action="/demo/post" method="post">
-        <input type="text" placeholder="Логин" name="login">
-        <input type="password" placeholder="Пароль" name="password">
-        <button type="submit">Войти</button>
-      </form>
+<#--      <form id="form" name="form" action="/demo/post" method="post">-->
+<#--        <input type="text" placeholder="Логин" name="login">-->
+<#--        <input type="password" placeholder="Пароль" name="password">-->
+<#--        <button type="submit">Войти</button>-->
+<#--      </form>-->
     </div>
   </section>
 </body>

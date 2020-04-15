@@ -133,7 +133,11 @@ function createPostElement(post){
           '<a href="#" class="muted">' + 'someusername' + '</a>' +
           '<p>' + 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum ad est cumque nulla voluptatem enim voluptas minima illum quis! Voluptatibus dolorem minus tempore aliquid corrupti nesciunt, obcaecati fuga natus officiis.' + '</p>' +
         '</div>' +
-  '</div>' + '</div>';
+  '</div>'  +   '<form>' +
+      '<textarea placeholder="Добавьте комментарий..." id="test" style="height: 50px; width: 460px;"></textarea>' +
+      '<button id="btn"  type="submit">Опубликовать</button>' +
+      '</form>' + '</div>'
+ ;
   return elem;
 }
 
@@ -220,6 +224,29 @@ document.querySelector('#btn').onclick = function(event){
     console.log(form.elements.test.value);
 }
 
+window.addEventListener('load', function () {
+
+    const post = fetch("http://localhost:8080");
+    console.log(post);
+
+    const savePostButton = document.getElementById("btnSubmit");
+
+    savePostButton.addEventListener("click", function() {
+        const postForm = document.getElementById("newPost");
+        let data = new FormData(postForm);
+
+        fetch("http://localhost:8080", {
+            method: 'POST',
+            body: data
+        }).then(r => r.json()).then(data => {window.location.href = "http://localhost:8080"});
+    });
+});
+
+const url = 'https://jsonplaceholder.typicode.com/todos';
+
+async  function fetchAsyncTodos() {
+
+}
 
 
 
