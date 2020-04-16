@@ -1,25 +1,21 @@
-package com.example.demo;
+package com.example.demo.controller;
 
 import com.example.demo.model.Publication;
 import com.example.demo.model.User;
 import com.example.demo.repo.PublicationRepository;
 import com.example.demo.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.apache.tomcat.util.http.fileupload.FileUploadBase.MULTIPART_FORM_DATA;
 
-public class Controller {
+public class IndexController {
     @Autowired
     PublicationRepository publicationRepository;
     @Autowired
@@ -28,11 +24,11 @@ public class Controller {
     @GetMapping
     public String root() {return  "index";}
 
-//    @PostMapping("/addPost")
-//    public String postDemo(@RequestParam("image") String image, @RequestParam("description") String description) {
-//        System.out.println(image + " - " + description);
-//        return "redirect:/index/";
-//    }
+    @PostMapping()
+    public String postDemo(@RequestParam("image") String image, @RequestParam("description") String description) {
+        System.out.println(image + " - " + description);
+        return "redirect:/index/";
+    }
 
     @RequestMapping( method = RequestMethod.POST, consumes=MULTIPART_FORM_DATA)
     public final String addPost(@RequestParam("user") String user_id,
@@ -53,5 +49,4 @@ public class Controller {
         System.out.println("done");
         return "success";
     }
-
 }
