@@ -27,13 +27,10 @@ window.addEventListener('load', function () {
             fetch("http://localhost:8000",)
                 // .then(response => response.text())
                 .then(text => console.log(text))
-                .then(data => console.log(data))
+                .then(data => data)
         }
-
-
-
-
 });
+
 async  function f() {
     const formData = new FormData();
     const fileField = document.querySelector('input[type="file"]');
@@ -43,18 +40,19 @@ async  function f() {
 
     try {
         const response = await fetch('http://localhost:8000', {
-            method: 'PUT',
+            method: 'POST',
             body: formData
         });
         const result = await response.json();
         console.log('Успех:', JSON.stringify(result));
+        console.log(formData);
     } catch (error) {
         console.error('Ошибка:', error);
     }
 
+
 }
 f();
-
 class User {
   constructor(id, name, email, isAuthorised) {
     this.id = id,
@@ -63,6 +61,7 @@ class User {
     this.isAuthorised = isAuthorised;
   }
 };
+
 class Comment {
   constructor(user, post, comment) {
     this.user = user,
@@ -137,8 +136,6 @@ function showSplashScreen(){
   document.getElementById('page-splash').hidden = false;
 	document.body.classList.add('no-scroll');
 }
-
-// showSplashScreen();
 
 function hideSplashScreen(){
     document.getElementById('page-splash').hidden = true;
@@ -255,26 +252,29 @@ for(let i = 0; i < postss.length; i++) {
 };
 
 
-document.querySelector('#btn').onclick = function(event){
+document.querySelector('#btnButton').onclick = function(event){
     event.preventDefault();
-    let form = document.querySelector('form');
-    console.log(form.elements.test.value);
+    let form = document.querySelector('#formm');
+    let existComments = document.getElementsByClassName('comments')[0];
+    let newComm = form.elements.test.value;
+    existComments.append(newComm);
+    console.log(newComm);
 }
 
 
-// const url = 'https://jsonplaceholder.typicode.com/todos';
-//
-// async  function fetchAsyncTodos() {
-//     console.log('fetch started')
-//     try{
-//         const response = await  fetch(url);
-//         const data = await  response.json();
-//         console.log('Data: ' , data);
-//     } catch (e) {
-//         console.error(e)
-//     }
-// }
-// fetchAsyncTodos();
+const url = 'https://jsonplaceholder.typicode.com/todos';
+
+async  function fetchAsyncTodos() {
+    console.log('fetch started')
+    try{
+        const response = await  fetch(url);
+        const data = await  response.json();
+        console.log('Data: ' , data);
+    } catch (e) {
+        console.error(e)
+    }
+}
+fetchAsyncTodos();
 
 
 

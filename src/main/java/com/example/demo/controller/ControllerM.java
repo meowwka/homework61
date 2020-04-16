@@ -28,10 +28,11 @@ public class ControllerM {
 //        return "redirect:/index/";
 //    }
 
-
-
     @GetMapping("/users")
     @ResponseBody
     public Iterable<User> getUsers(){return userRepository.findAll();}
 
+    @GetMapping("/publications")
+    @ResponseBody
+    public  Iterable<Publication> getPublications(){return publicationRepository.findAll();}
 }
