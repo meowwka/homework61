@@ -252,14 +252,41 @@ for(let i = 0; i < postss.length; i++) {
 };
 
 
-document.querySelector('#btnButton').onclick = function(event){
-    event.preventDefault();
-    let form = document.querySelector('#formm');
-    let existComments = document.getElementsByClassName('comments')[0];
-    let newComm = form.elements.test.value;
-    existComments.append(newComm);
-    console.log(newComm);
-}
+// document.querySelector('#btnButton').onclick = function(event){
+//     event.preventDefault();
+//     let form = document.querySelector('#formm');
+//     let existComments = document.getElementsByClassName('comments')[0];
+//     let newComm = form.elements.test.value;
+//     existComments.append(newComm);
+//     console.log(newComm);
+// }
+ var fromm = document.getElementById('btnButton')
+fromm.addEventListener('click', function (e) {
+    e.preventDefault();
+    let test = document.getElementById( 'test').value;
+
+    fetch("https://jsonplaceholder.typicode.com/comments" , {
+        method: 'POST',
+        body:JSON.stringify({
+            title:test
+        }),
+        headers: {
+            "Content-Type":"application/json; charset=UTF-8"
+        }
+    }).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        console.log(data)
+        let div = document.getElementById('newCom');
+        let elem= document.createElement('div')
+        elem.classList.add('py-2');
+        elem.classList.add('pl-3');
+        elem.innerHTML = '<a href="#" class="muted">'+ `${data.id}`+  '</a>' +
+            '<p>' +`${data.title}`+'</p>';
+        div.append(createCommentElement(elem));
+    })
+
+})
 
 
 const url = 'https://jsonplaceholder.typicode.com/todos';
