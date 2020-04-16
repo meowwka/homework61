@@ -30,7 +30,7 @@ public class IndexController {
         return "redirect:/index/";
     }
 
-    @RequestMapping( method = RequestMethod.POST, consumes=MULTIPART_FORM_DATA)
+    @RequestMapping( value = "/",method = RequestMethod.POST, consumes=MULTIPART_FORM_DATA)
     public final String addPost(@RequestParam("user") String user_id,
                                 @RequestParam("description") String description,
                                 @RequestParam("imagine") MultipartFile image) throws IOException {

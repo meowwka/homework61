@@ -281,9 +281,8 @@ fromm.addEventListener('click', function (e) {
         let elem= document.createElement('div')
         elem.classList.add('py-2');
         elem.classList.add('pl-3');
-        elem.innerHTML = '<a href="#" class="muted">'+ `${data.id}`+  '</a>' +
-            '<p>' +`${data.title}`+'</p>';
-        div.append(createCommentElement(elem));
+        elem.innerHTML = `<a href="#" class="muted">${data.id}</a><p>${data.title}</p>`;
+        div.append(elem);
     })
 
 })
